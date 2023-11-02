@@ -1,3 +1,3 @@
 #!/bin/bash
-# This script sends a GET request to a URL using curl and displays the body of a 200 status code response.
-curl -sI "$1" | grep -iE '^HTTP/1\.[01] 200' && curl -s "$1"
+# This script takes a URL as an argument, sends a GET request, and displays the body of the response for a 200 status code.
+curl -s -o /dev/null -w "%{http_code}" "$1" | grep -q 200 && curl -s "$1"
